@@ -20,13 +20,12 @@ namespace LocalizingCustomText
             sfcalendar = new SFCalendar();
             calendarAppointmentCollection = new NSMutableArray();
             sfcalendar.EnableInLine = true;
+            // Set Locale to Calendar
             sfcalendar.Locale = new NSLocale("fr");
             sfcalendar.Frame = new CoreGraphics.CGRect(0, 20, this.View.Frame.Width, this.View.Frame.Height);
 
             NSCalendar calendar = NSCalendar.CurrentCalendar;
-
             NSDate today = new NSDate();
-
             NSDateComponents startDateComponents = calendar.Components(NSCalendarUnit.Year | NSCalendarUnit.Month | NSCalendarUnit.Day, today);
             startDateComponents.Hour = 10;
             startDateComponents.Minute = 0;
@@ -41,6 +40,7 @@ namespace LocalizingCustomText
 
             NSDate endDate = calendar.DateFromComponents(endDateComponents);
 
+            // Creating calendarAppointment in SfCalendar
             SFAppointment calendarAppointment = new SFAppointment();
             calendarAppointment.StartTime = startDate;
             calendarAppointment.EndTime = endDate;
@@ -51,6 +51,7 @@ namespace LocalizingCustomText
 
             calendarAppointmentCollection.Add(calendarAppointment);
 
+            //Add collection of appointments as Appointments of SfCalendar
             sfcalendar.Appointments = calendarAppointmentCollection;
 
             View.AddSubview(sfcalendar);
